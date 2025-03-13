@@ -181,7 +181,7 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
-        .info-button, .radio-button {
+        .info-button, .car-care-button, .radio-button {
             position: absolute;
             top: 20px;
             background-color: rgba(255, 255, 255, 0.2);
@@ -199,11 +199,16 @@
             right: 20px;
         }
 
+        .car-care-button {
+            top: 70px;
+            right: 20px;
+        }
+
         .radio-button {
             left: 20px;
         }
 
-        .info-button:hover, .radio-button:hover {
+        .info-button:hover, .car-care-button:hover, .radio-button:hover {
             background-color: rgba(255, 255, 255, 0.3);
             transform: scale(1.1);
         }
@@ -291,7 +296,7 @@
                 font-size: 0.9rem;
             }
 
-            .info-button, .radio-button {
+            .info-button, .car-care-button, .radio-button {
                 padding: 8px 16px;
                 font-size: 0.9rem;
             }
@@ -309,6 +314,7 @@
 <body>
     <div class="container">
         <button class="info-button" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i> Információk</button>
+        <button class="car-care-button" data-toggle="modal" data-target="#carCareModal"><i class="fas fa-car"></i> Autókozmetika & Vontatás</button>
         <button class="radio-button" data-toggle="modal" data-target="#radioModal"><i class="fas fa-music"></i> Rádió</button>
         <div class="header">
             <img src="https://i.postimg.cc/D0tYWgnQ/Hayes-Auto-Body-Shop-GTAV-Logo.png" alt="Logo" class="logo">
@@ -333,13 +339,43 @@
                 <div class="modal-body">
                     <p>Az oldal reszponzív, vagyis mobiltelefonról és tabletről is könnyedén elérhető. Ha kisebb kijelzőn használod, az alkatrészek listája és a keresőmező automatikusan igazodik a képernyő méretéhez.</p>
     <ul>
-        <li>Az oldalon található keresőmezőbe írd be a keresett jármű nevét vagy típusát.</li>
-        <li>Nyomj egy Entert, hogy megnézd az adott jármű alkatrész árait.</li>
-        <li>Bal klikkel válaszd ki a szükséges alkatrészeket.</li>
-        <li>A fizetendő összeg automatikusan kiszámolásra kerül, ami az alkatrészek alatt látható.</li>
-        <li>Az oldal bal felső sarkában található egy rádió fül, ahol munka közben hallgathatod a kedvenc rádióadód.</li>
-        <li>Crawford a legnagyobb Király!!</li>
+        <li>A jármű nevét a jármű közelében állva, a /dl parancs beírásával tekintheted meg.</li>
+		<li>A kereső csak akkor ad találatot, ha a keresett kifejezés pontosan egyezik a jármű nevével. A kis- és nagybetűk közötti különbség nem számít, és a szóközök sem befolyásolják az eredményt.</li>
+        <li>A keresett jármű nevét írd be az oldalon található keresőmezőbe.</li>
+        <li>Ha rendőr, tűzoltó vagy mentő hozza szervizelésre a szolgálati járművét, a keresőmezőben az LSPD, PHMC vagy LSFD kifejezésekre kell keresni.</li>
+        <li>Nyomj Entert, hogy megjelenjenek az adott jármű alkatrészárai.</li>
+		<li>Bal kattintással válaszd ki a szükséges alkatrészeket.</li>
+        <li>A fizetendő összeg automatikusan kiszámolásra kerül, és az alkatrészek alatt jelenik meg.</li>
+        <li>Az ár nem változik a kicserélt elemek számától — például 1 lámpa cseréje ugyanannyiba kerül, mint 2 lámpáé.</li>
     </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Autókozmetika és Vontatás modális ablak -->
+    <div class="modal fade" id="carCareModal" tabindex="-1" aria-labelledby="carCareModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carCareModalLabel">Autókozmetika & Vontatás Árak</h5>
+                </div>
+                <div class="modal-body">
+                    <h6>Autókozmetika</h6>
+                    <ul class="list-group">
+                        <li class="list-group-item">Külső tisztítás: $300</li>
+                        <li class="list-group-item">Belső tisztítás: $200</li>
+                        <li class="list-group-item">Polír: $300</li>
+                        <li class="list-group-item">Wax: $200</li>
+                    </ul>
+                    <h6 class="mt-3">Vontatás</h6>
+                    <ul class="list-group">
+                        <li class="list-group-item">Városon belül: $800</li>
+                        <li class="list-group-item">Városon kívül: $1400</li>
+                    </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezárás</button>
@@ -384,85 +420,5772 @@
         // Example cars data
         const exampleCars = {
             car1: {
-                name: "Voodoo",
+                name: "Faggio Sport",
                 parts: {
-                    alapdíj: 800,
-                    lámpa: 0,
-                    ablak: 0,
-                    lökhárító: 0,
-                    ajtó: 0,
-                    kerék: 0,
-                    motorháztető: 0,
-                    csomagtartó: 0,
-                    karosszéria: 0,
-                    motorhiba: 0,
-                    totálkár: 0
+                    alapdíj: 200,
+                    lámpa: 30,
+                    kerék: 25,
+                    motorhiba: 45,
+                    totálkár: 150
                 }
             },
             car2: {
-                name: "Regina",
+                name: "Faggio",
                 parts: {
-                    alapdíj: 1000,
-                    lámpa: 50,
-                    ablak: 120,
-                    lökhárító: 200,
-                    ajtó: 150,
-                    kerék: 80,
-                    motorháztető: 120,
-                    csomagtartó: 140,
-                    karosszéria: 500,
-                    motorhiba: 300,
-                    totálkár: 1000
+                    alapdíj: 200,
+                    lámpa: 30,
+                    kerék: 25,
+                    motorhiba: 45,
+                    totálkár: 150
                 }
             },
             car3: {
-                name: "Brioso 300",
+                name: "Faggio Mod",
                 parts: {
-                    alapdíj: 900,
-                    lámpa: 60,
-                    ablak: 110,
-                    lökhárító: 180,
-                    ajtó: 140,
-                    kerék: 70,
-                    motorháztető: 130,
-                    csomagtartó: 150,
-                    karosszéria: 480,
-                    motorhiba: 290,
-                    totálkár: 950
+                    alapdíj: 200,
+                    lámpa: 30,
+                    kerék: 25,
+                    motorhiba: 45,
+                    totálkár: 150
                 }
             },
             car4: {
-                name: "Surfer",
+                name: "Voodoo",
                 parts: {
-                    alapdíj: 850,
-                    lámpa: 55,
-                    ablak: 105,
-                    lökhárító: 170,
-                    ajtó: 135,
-                    kerék: 75,
-                    motorháztető: 125,
-                    csomagtartó: 145,
-                    karosszéria: 470,
-                    motorhiba: 280,
-                    totálkár: 920
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
                 }
             },
             car5: {
+                name: "Regina",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car6: {
+                name: "Brioso 300",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car7: {
+                name: "Surfer",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car8: {
                 name: "Asbo",
                 parts: {
-                    alapdíj: 880,
-                    lámpa: 52,
-                    ablak: 100,
-                    lökhárító: 160,
-                    ajtó: 130,
-                    kerék: 85,
-                    motorháztető: 110,
-                    csomagtartó: 155,
-                    karosszéria: 490,
-                    motorhiba: 270,
-                    totálkár: 900
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
                 }
-            }
+            },
+			car9: {
+                name: "Rhapsody",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car10: {
+                name: "Journey",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car11: {
+                name: "Asea",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car12: {
+                name: "Panto",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car13: {
+                name: "Ingot",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car14: {
+                name: "Emperor",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car15: {
+                name: "Journey II",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car16: {
+                name: "Dilettante",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car17: {
+                name: "Blista",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car18: {
+                name: "Manana",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car19: {
+                name: "Minivan",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car20: {
+                name: "Stratum",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car21: {
+                name: "Minivan Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car22: {
+                name: "Youga",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car23: {
+                name: "Moonbeam",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car24: {
+                name: "Issi Classic",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car25: {
+                name: "Blazer",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car26: {
+                name: "Prairie",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car27: {
+                name: "Voodoo Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car28: {
+                name: "Daemon",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car29: {
+                name: "Stanier",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car30: {
+                name: "Habanero",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car31: {
+                name: "Issi",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car32: {
+                name: "Slamvan",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car33: {
+                name: "Steed",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car34: {
+                name: "Radius",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car35: {
+                name: "Bobcat XL",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car36: {
+                name: "Club",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car37: {
+                name: "Primo",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car38: {
+                name: "Weevil",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car39: {
+                name: "Boor",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car40: {
+                name: "Landstalker",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car41: {
+                name: "Asterope",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car42: {
+                name: "Enduro",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car43: {
+                name: "Blade",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car44: {
+                name: "Burrito",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car45: {
+                name: "Rancher XL",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car46: {
+                name: "Speedo",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car47: {
+                name: "Hexer",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car48: {
+                name: "Clique Wagon",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car49: {
+                name: "Tulip M-100",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car50: {
+                name: "Surfer Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car51: {
+                name: "Verus",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car52: {
+                name: "Wolfsbane",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car53: {
+                name: "Impaler",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car54: {
+                name: "Walton L35",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car55: {
+                name: "Intruder",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car56: {
+                name: "Rat-Truck",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car57: {
+                name: "Yosemite",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car58: {
+                name: "Esskey",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car59: {
+                name: "Seminole Frontier",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car60: {
+                name: "Zombie Bobber",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car61: {
+                name: "Faction",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car62: {
+                name: "Vapid Victor",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car63: {
+                name: "Brioso R/A",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car64: {
+                name: "Zombie Chopper",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car65: {
+                name: "Bagger",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car66: {
+                name: "Sovereign",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car67: {
+                name: "Glendale Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car68: {
+                name: "Washington",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car69: {
+                name: "Bison",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car70: {
+                name: "Primo Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car71: {
+                name: "Cavalcade",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car72: {
+                name: "Nemesis",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car73: {
+                name: "Greenwood",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car74: {
+                name: "Beejay XL",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car75: {
+                name: "Dorado",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car76: {
+                name: "Seminole",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car77: {
+                name: "Ruiner",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car78: {
+                name: "Camper",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car79: {
+                name: "Serrano",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car80: {
+                name: "PCJ-600",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car81: {
+                name: "Sanchez",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car82: {
+                name: "Thrust",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car83: {
+                name: "Virgo",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car84: {
+                name: "Innovation",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car85: {
+                name: "Buccaneer",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car86: {
+                name: "Bati 801",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car87: {
+                name: "Vader",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car88: {
+                name: "Chino",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car89: {
+                name: "Nightblade",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car90: {
+                name: "Hakuchou",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car91: {
+                name: "Mesa",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car92: {
+                name: "Baller",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car93: {
+                name: "Futo",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car94: {
+                name: "Lectro",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car95: {
+                name: "Blista Kanjo",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car96: {
+                name: "Double-T",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car97: {
+                name: "Chimera",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car98: {
+                name: "Tulip",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car99: {
+                name: "Manana Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car100: {
+                name: "Scout",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car101: {
+                name: "Akuma",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car102: {
+                name: "Ruffian",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car103: {
+                name: "Gargoyle",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car104: {
+                name: "FCR 1000",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car105: {
+                name: "Previon",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car106: {
+                name: "Cavalcade II",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car107: {
+                name: "Carbon RS",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car108: {
+                name: "Broadway",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car109: {
+                name: "Surge",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car110: {
+                name: "Vamos",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car111: {
+                name: "Granger",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car112: {
+                name: "Manchez",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car113: {
+                name: "Oracle XS",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car114: {
+                name: "Chino Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car115: {
+                name: "Faction Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car116: {
+                name: "Kanjo SJ",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car117: {
+                name: "Alamo",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car118: {
+                name: "Declasse Indiana",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car119: {
+                name: "FCR 1000 Custom",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car120: {
+                name: "Speedo Express",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car121: {
+                name: "Slamvan Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car122: {
+                name: "Fugitive",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car123: {
+                name: "Virgo Classic",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car124: {
+                name: "Hexer Custom",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car125: {
+                name: "Impaler SZ",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car126: {
+                name: "Buccaneer Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car127: {
+                name: "Tailgater",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car128: {
+                name: "Vivanite",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car129: {
+                name: "Avarus",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car130: {
+                name: "Asterope GZ",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car131: {
+                name: "Vigero",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car132: {
+                name: "Impaler LX",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car133: {
+                name: "Gresley",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car134: {
+                name: "FQ2",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car135: {
+                name: "Phoenix",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car136: {
+                name: "Shinobi",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car137: {
+                name: "Western Nightblade Classic",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car138: {
+                name: "Virgo Classic Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car139: {
+                name: "Dynasty",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car140: {
+                name: "Seraph",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car141: {
+                name: "Sabre Turbo",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car142: {
+                name: "Savestra",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car143: {
+                name: "Tampa",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car144: {
+                name: "Tornado",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car145: {
+                name: "Rocoto",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car146: {
+                name: "Bati 701",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car147: {
+                name: "Tahoma Coupe",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car148: {
+                name: "Torrence STO",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car149: {
+                name: "Peyote",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car150: {
+                name: "Eudora",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car151: {
+                name: "Hakuchou Drag",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car152: {
+                name: "Stryder",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car152: {
+                name: "Vapid Scout 2020",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car153: {
+                name: "Dukes",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car154: {
+                name: "Gauntlet Classic",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car155: {
+                name: "Landstalker XL",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car156: {
+                name: "Sabre Turbo Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car157: {
+                name: "Huntley S",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car158: {
+                name: "Powersurge",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car159: {
+                name: "Vapid Bobcat Hellraiser",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car160: {
+                name: "Kawaii",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car161: {
+                name: "Gresley Hellhound",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car162: {
+                name: "BF400",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car163: {
+                name: "RT3000",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },car164: {
+                name: "Gauntlet Classic Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car165: {
+                name: "Contender Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car166: {
+                name: "Arias",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car167: {
+                name: "Hellion",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car168: {
+                name: "Deviant",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car169: {
+                name: "Baller II",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car170: {
+                name: "Contender",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car171: {
+                name: "Annis Remus",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car172: {
+                name: "XLS",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car173: {
+                name: "Caracara 4x4",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car174: {
+                name: "Baller LE",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car175: {
+                name: "Patriot",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car176: {
+                name: "Vorstand",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car177: {
+                name: "Penumbra",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car178: {
+                name: "Gauntlet",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car179: {
+                name: "Dubsta",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car180: {
+                name: "Baller LE LWB",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car181: {
+                name: "ZR350",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car182: {
+                name: "Buffalo",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car183: {
+                name: "Kamacho",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car184: {
+                name: "Rapid GT Classic",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car185: {
+                name: "Sentinel XS",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car186: {
+                name: "Zion Classic",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car187: {
+                name: "S-230",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car188: {
+                name: "Zion",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car189: {
+                name: "Oracle V12 Estate",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car190: {
+                name: "Mule",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car191: {
+                name: "Tow Truck",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car192: {
+                name: "Felon",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car193: {
+                name: "Schafter",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car194: {
+                name: "Oracle V12",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car195: {
+                name: "Zion Cabrio",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car196: {
+                name: "Spritzer STR",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car197: {
+                name: "Sultan",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car198: {
+                name: "Felon GT",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car199: {
+                name: "Jackal",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car200: {
+                name: "Sentinel",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car201: {
+                name: "Nightshade",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car202: {
+                name: "Sandstorm",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car203: {
+                name: "Übermacht",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car204: {
+                name: "Exemplar",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car205: {
+                name: "Dominator",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car206: {
+                name: "Coquette Classic",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car207: {
+                name: "Sugoi",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car208: {
+                name: "F620",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car209: {
+                name: "Dubsta II",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car210: {
+                name: "Rapid GT",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car211: {
+                name: "Dominator GT",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car212: {
+                name: "Buffalo S",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car213: {
+                name: "Sandstorm XL",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car214: {
+                name: "Scheisser",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car215: {
+                name: "Oracle",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car216: {
+                name: "Sentinel Classic",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car217: {
+                name: "Pounder",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car218: {
+                name: "Gauntlet Hellfire",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car219: {
+                name: "Torrence SSO",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car220: {
+                name: "Sentinel SG3",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car221: {
+                name: "Panthere",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car222: {
+                name: "FR36",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car223: {
+                name: "Sentinel SG3 Wagon",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car224: {
+                name: "Sentinel Classic Widebody",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car225: {
+                name: "Cognoscenti Cabrio",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car226: {
+                name: "Sultan Classic",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car227: {
+                name: "Massacro",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car228: {
+                name: "Restomod Tampa",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car229: {
+                name: "Ellie",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car230: {
+                name: "Sentinel SG4",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car231: {
+                name: "Elegy RH8",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car232: {
+                name: "Buffalo Hellhound",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car233: {
+                name: "Cognoscenti 55",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car234: {
+                name: "Alpha",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car235: {
+                name: "Schafter V12",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car236: {
+                name: "Feltzer",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car237: {
+                name: "Dominator GTX",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car238: {
+                name: "Hauler",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car239: {
+                name: "Vigero ZX Convertible",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car240: {
+                name: "Jester Classic",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car241: {
+                name: "Casco",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car242: {
+                name: "Packer",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car243: {
+                name: "Cognoscenti",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car244: {
+                name: "Stinger",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car245: {
+                name: "Novak",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car246: {
+                name: "Vigero ZX",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car247: {
+                name: "Baller ST",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car248: {
+                name: "Monroe",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car249: {
+                name: "Stretch",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car250: {
+                name: "Sultan RS",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car251: {
+                name: "I-Wagen",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car252: {
+                name: "Astron",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car253: {
+                name: "Phantom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car254: {
+                name: "Rebla GTS",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car255: {
+                name: "300R",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car256: {
+                name: "8F Drafter",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car257: {
+                name: "Granger Retro",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car258: {
+                name: "Ariant",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car259: {
+                name: "Argento",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car260: {
+                name: "Hermes",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car261: {
+                name: "Phantom Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 3500
+                }
+            },
+			car262: {
+                name: "Stinger GT",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car263: {
+                name: "Raiden",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car264: {
+                name: "Patriot Stretch",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car265: {
+                name: "Kuruma",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car266: {
+                name: "Jester RR",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car267: {
+                name: "Elegy Retro Custom",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car268: {
+                name: "Neon",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car269: {
+                name: "Paragon R",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car270: {
+                name: "Bullet",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car271: {
+                name: "Coquette",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car272: {
+                name: "Futo GTX",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car273: {
+                name: "Khamelion",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car274: {
+                name: "Voltic",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car275: {
+                name: "Comet",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car276: {
+                name: "Komoda",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car277: {
+                name: "Tailgater S",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car278: {
+                name: "9F",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car279: {
+                name: "Rhinehart",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car280: {
+                name: "Remus",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car281: {
+                name: "9F Cabrio",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car282: {
+                name: "Carbonizzare",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car283: {
+                name: "Calico GTF",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car284: {
+                name: "Elegy RH7",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car285: {
+                name: "Seraph XS V10",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car286: {
+                name: "Super Diamond",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car287: {
+                name: "Sunrise R",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car288: {
+                name: "Cypher",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car289: {
+                name: "Vectre",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car290: {
+                name: "Euros",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car291: {
+                name: "Comet SR",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car292: {
+                name: "Banshee",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car293: {
+                name: "Asterope RS",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car294: {
+                name: "Comet Retro Custom",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car295: {
+                name: "Jugular",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car296: {
+                name: "Cypher Hatchback",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car297: {
+                name: "Dewbauchee R9GT",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car298: {
+                name: "Bestia GTS",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car299: {
+                name: "Toros",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car300: {
+                name: "Comet S2",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car301: {
+                name: "V-STR",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car302: {
+                name: "Comet S2 Cabrio",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car303: {
+                name: "Growler",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car304: {
+                name: "Sandking RV",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car305: {
+                name: "Caracara 4x4",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car306: {
+                name: "Seven-70",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car307: {
+                name: "Grotti Deimos",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car308: {
+                name: "Jester",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car309: {
+                name: "Windsor",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car310: {
+                name: "Schlagen GT",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car311: {
+                name: "Windsor Drop",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car312: {
+                name: "Stafford",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car313: {
+                name: "Meteor",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car314: {
+                name: "Deity",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car315: {
+                name: "Jubilee",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car316: {
+                name: "Infernus Classic",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car317: {
+                name: "Cheetah Classic",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car318: {
+                name: "Super Diamond S",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car319: {
+                name: "Pariah",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car320: {
+                name: "Infernus",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car321: {
+                name: "GP1",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car322: {
+                name: "Hustler",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car323: {
+                name: "Hotknife",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car324: {
+                name: "Turismo Classic",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car325: {
+                name: "Vacca",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car326: {
+                name: "Itali GTO",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car327: {
+                name: "811",
+                parts: {
+                    munkadíj: 700,
+                    lámpa: 80,
+                    ablak: 80,
+                    lökhárító: 130,
+                    ajtó: 130,
+                    kerék: 80,
+                    motorháztető: 80,
+                    csomagtartó: 80,
+                    karosszéria: 130,
+                    motorhiba: 230,
+                    totálkár: 380
+                }
+            },
+			car328: {
+                name: "10F",
+                parts: {
+                    munkadíj: 700,
+                    lámpa: 80,
+                    ablak: 80,
+                    lökhárító: 130,
+                    ajtó: 130,
+                    kerék: 80,
+                    motorháztető: 80,
+                    csomagtartó: 80,
+                    karosszéria: 130,
+                    motorhiba: 230,
+                    totálkár: 380
+                }
+            },
+			car329: {
+                name: "Krieger",
+                parts: {
+                    munkadíj: 700,
+                    lámpa: 80,
+                    ablak: 80,
+                    lökhárító: 130,
+                    ajtó: 130,
+                    kerék: 80,
+                    motorháztető: 80,
+                    csomagtartó: 80,
+                    karosszéria: 130,
+                    motorhiba: 230,
+                    totálkár: 380
+                }
+            },
+			car330: {
+                name: "Entity XF",
+                parts: {
+                    munkadíj: 700,
+                    lámpa: 80,
+                    ablak: 80,
+                    lökhárító: 130,
+                    ajtó: 130,
+                    kerék: 80,
+                    motorháztető: 80,
+                    csomagtartó: 80,
+                    karosszéria: 130,
+                    motorhiba: 230,
+                    totálkár: 380
+                }
+            },
+			car331: {
+                name: "Furia",
+                parts: {
+                    munkadíj: 800,
+                    lámpa: 90,
+                    ablak: 90,
+                    lökhárító: 140,
+                    ajtó: 140,
+                    kerék: 90,
+                    motorháztető: 90,
+                    csomagtartó: 90,
+                    karosszéria: 140,
+                    motorhiba: 240,
+                    totálkár: 390
+                }
+            },
+			car332: {
+                name: "MF1 Spyder",
+                parts: {
+                    munkadíj: 800,
+                    lámpa: 90,
+                    ablak: 90,
+                    lökhárító: 140,
+                    ajtó: 140,
+                    kerék: 90,
+                    motorháztető: 90,
+                    csomagtartó: 90,
+                    karosszéria: 140,
+                    motorhiba: 240,
+                    totálkár: 390
+                }
+            },
+			car333: {
+                name: "Tempesta Spyder",
+                parts: {
+                    munkadíj: 800,
+                    lámpa: 90,
+                    ablak: 90,
+                    lökhárító: 140,
+                    ajtó: 140,
+                    kerék: 90,
+                    motorháztető: 90,
+                    csomagtartó: 90,
+                    karosszéria: 140,
+                    motorhiba: 240,
+                    totálkár: 390
+                }
+            },
+			car334: {
+                name: "Z-Type",
+                parts: {
+                    munkadíj: 800,
+                    lámpa: 90,
+                    ablak: 90,
+                    lökhárító: 140,
+                    ajtó: 140,
+                    kerék: 90,
+                    motorháztető: 90,
+                    csomagtartó: 90,
+                    karosszéria: 140,
+                    motorhiba: 240,
+                    totálkár: 390
+                }
+            },
+			car335: {
+                name: "Entity MT",
+                parts: {
+                    munkadíj: 800,
+                    lámpa: 90,
+                    ablak: 90,
+                    lökhárító: 140,
+                    ajtó: 140,
+                    kerék: 90,
+                    motorháztető: 90,
+                    csomagtartó: 90,
+                    karosszéria: 140,
+                    motorhiba: 240,
+                    totálkár: 390
+                }
+            },
+			car336: {
+                name: "Itali RSX",
+                parts: {
+                    munkadíj: 800,
+                    lámpa: 90,
+                    ablak: 90,
+                    lökhárító: 140,
+                    ajtó: 140,
+                    kerék: 90,
+                    motorháztető: 90,
+                    csomagtartó: 90,
+                    karosszéria: 140,
+                    motorhiba: 240,
+                    totálkár: 390
+                }
+            },
+			car337: {
+                name: "T20",
+                parts: {
+                    munkadíj: 800,
+                    lámpa: 90,
+                    ablak: 90,
+                    lökhárító: 140,
+                    ajtó: 140,
+                    kerék: 90,
+                    motorháztető: 90,
+                    csomagtartó: 90,
+                    karosszéria: 140,
+                    motorhiba: 240,
+                    totálkár: 390
+                }
+            },
+			car338: {
+                name: "MF1 Spyder Custom",
+                parts: {
+                    munkadíj: 900,
+                    lámpa: 100,
+                    ablak: 100,
+                    lökhárító: 150,
+                    ajtó: 150,
+                    kerék: 100,
+                    motorháztető: 100,
+                    csomagtartó: 100,
+                    karosszéria: 150,
+                    motorhiba: 250,
+                    totálkár: 400
+                }
+            },
+			car339: {
+                name: "Nero",
+                parts: {
+                    munkadíj: 900,
+                    lámpa: 100,
+                    ablak: 100,
+                    lökhárító: 150,
+                    ajtó: 150,
+                    kerék: 100,
+                    motorháztető: 100,
+                    csomagtartó: 100,
+                    karosszéria: 150,
+                    motorhiba: 250,
+                    totálkár: 400
+                }
+            },
+			car340: {
+                name: "Torero XO",
+                parts: {
+                    munkadíj: 900,
+                    lámpa: 100,
+                    ablak: 100,
+                    lökhárító: 150,
+                    ajtó: 150,
+                    kerék: 100,
+                    motorháztető: 100,
+                    csomagtartó: 100,
+                    karosszéria: 150,
+                    motorhiba: 250,
+                    totálkár: 400
+                }
+            },
+			car341: {
+                name: "Zentorno",
+                parts: {
+                    munkadíj: 900,
+                    lámpa: 100,
+                    ablak: 100,
+                    lökhárító: 150,
+                    ajtó: 150,
+                    kerék: 100,
+                    motorháztető: 100,
+                    csomagtartó: 100,
+                    karosszéria: 150,
+                    motorhiba: 250,
+                    totálkár: 400
+                }
+            },
+			car342: {
+                name: "LSPD",
+                parts: {
+                    munkadíj: 0,
+                    lámpa: 45,
+                    ablak: 62,
+                    lökhárító: 58,
+                    ajtó: 47,
+                    kerék: 59,
+                    motorháztető: 61,
+                    csomagtartó: 60,
+                    karosszéria: 57,
+                    motorhiba: 74,
+                    totálkár: 77
+                }
+            },
+			car343: {
+                name: "LSFD",
+                parts: {
+                    munkadíj: 0,
+                    lámpa: 24,
+                    ablak: 31,
+                    lökhárító: 26,
+                    ajtó: 27,
+                    kerék: 30,
+                    motorháztető: 28,
+                    csomagtartó: 25,
+                    karosszéria: 29,
+                    motorhiba: 35,
+                    totálkár: 45
+                }
+            },
+			car344: {
+                name: "PHMC",
+                parts: {
+                    munkadíj: 0,
+                    lámpa: 15,
+                    ablak: 20,
+                    lökhárító: 10,
+                    ajtó: 30,
+                    kerék: 10,
+                    motorháztető: 15,
+                    csomagtartó: 25,
+                    karosszéria: 25,
+                    motorhiba: 25,
+                    totálkár: 25
+                }
+            },
+			car345: {
+                name: "Jogger Passenger",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car346: {
+                name: "Riata TX",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car347: {
+                name: "Riata S",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car348: {
+                name: "Elegy RH-6",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car349: {
+                name: "Tulip M-100 Sedan",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car350: {
+                name: "550SS",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car351: {
+                name: "Utility Truck",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car352: {
+                name: "Tulip M-100",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car353: {
+                name: "Walton L35 Stock",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car354: {
+                name: "Comet Classic",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car355: {
+                name: "Stallion",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car356: {
+                name: "ZR-380 Custom",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car357: {
+                name: "Sentinel S",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car358: {
+                name: "Sentinel XL",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car359: {
+                name: "Everon",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car360: {
+                name: "Executioner",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car361: {
+                name: "Oracle XS-LE",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car362: {
+                name: "Streiter",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car363: {
+                name: "Imperial EV",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car364: {
+                name: "Buffalo STX",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car365: {
+                name: "Coquette D10",
+                parts: {
+                    munkadíj: 600,
+                    lámpa: 70,
+                    ablak: 70,
+                    lökhárító: 120,
+                    ajtó: 120,
+                    kerék: 70,
+                    motorháztető: 70,
+                    csomagtartó: 70,
+                    karosszéria: 120,
+                    motorhiba: 220,
+                    totálkár: 370
+                }
+            },
+			car366: {
+                name: "Western LCC Marabunta",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car367: {
+                name: "Indian Chief Dark Horse",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car368: {
+                name: "Western Sombrero",
+                parts: {
+                    alapdíj: 300,
+                    lámpa: 40,
+                    kerék: 35,
+                    motorhiba: 55,
+                    totálkár: 155
+                }
+            },
+			car369: {
+                name: "Nexus EX-I",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
+			car370: {
+                name: "Üres slot 370",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car371: {
+                name: "Üres slot 371",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car372: {
+                name: "Üres slot 372",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car373: {
+                name: "Üres slot 373",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car374: {
+                name: "Üres slot 374",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car375: {
+                name: "Üres slot 375",
+                parts: {
+                    munkadíj: 400,
+                    lámpa: 50,
+                    ablak: 50,
+                    lökhárító: 100,
+                    ajtó: 100,
+                    kerék: 50,
+                    motorháztető: 50,
+                    csomagtartó: 50,
+                    karosszéria: 100,
+                    motorhiba: 200,
+                    totálkár: 350
+                }
+            },
+			car376: {
+                name: "Üres slot 376",
+                parts: {
+                    munkadíj: 500,
+                    lámpa: 60,
+                    ablak: 60,
+                    lökhárító: 110,
+                    ajtó: 110,
+                    kerék: 60,
+                    motorháztető: 60,
+                    csomagtartó: 60,
+                    karosszéria: 110,
+                    motorhiba: 210,
+                    totálkár: 360
+                }
+            },
         };
 
         function displayResults(results) {
@@ -540,11 +6263,11 @@
 			{ name: "Rádió M - Miskolc", url: "http://hosting2.42netmedia.com:10060/stream" },
 			{ name: "Kossuth Rádió - Magyar Rádió", url: "https://icast.connectmedia.hu/4736/mr1.mp3" },
 			{ name: "Retro Rádió - Minden idők legnagyobb slágerei", url: "https://icast.connectmedia.hu/5001/live.mp3" },
-			{ name: "#6", url: "#" },
-			{ name: "#7", url: "#" },
-			{ name: "#8", url: "#" },
-			{ name: "#9", url: "#" },
-			{ name: "#10", url: "#" },
+			{ name: "Dankó Rádió - Dankó Rádió", url: "https://icast.connectmedia.hu/4748/mr7.mp3" },
+			{ name: "Best FM - BestFM", url: "https://icast.connectmedia.hu/5101/live.mp3" },
+			{ name: "MegaDance Rádió - Live", url: "https://gamershouse.hu:8080/livemega.mp3" },
+			{ name: "Hot 108 Jamz - New York", url: "https://live.powerhitz.com/hot108" },
+			{ name: "100hitz - Hip Hop", url: "http://cdn.gotradio.com/itunes/100hitz_hip_hop.pls" },
 			{ name: "#11", url: "#" },
 			{ name: "#12", url: "#" },
 			{ name: "#13", url: "#" },
